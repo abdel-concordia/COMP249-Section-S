@@ -6,8 +6,8 @@ public class Person {
     private String name;
     // Age (int)
     private int age;
-    // Address (String)
-    private String address;
+    // Address (Address)
+    private Address address;
 
     // Parametrized constructor
     public Person(String name, int age, String address) {
