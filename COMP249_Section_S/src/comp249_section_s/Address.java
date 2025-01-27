@@ -15,6 +15,10 @@ public class Address {
         this.cityName = cityName;
     }
 
+    public Address(Address otherAddress) {
+        this(otherAddress.streetNumber, otherAddress.streetName, otherAddress.cityName);
+    }
+
     // Getters
     public int getStreetNumber() {
         return this.streetNumber;
