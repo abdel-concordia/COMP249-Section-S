@@ -1,6 +1,6 @@
 package comp249_section_s;
 
-public class Person {
+public class Person extends Object {
 
     // Name (String)
     private String name;
@@ -20,6 +20,7 @@ public class Person {
     // Default constructor
     public Person() {
         this("Unknown name", 0, new Address(0, "Unknown street name", "Unknown city name")); // calls another constructor
+        // Can have some other statements
     }
 
     public Person(String name, int age, int streetNumber, String streetName, String cityName) {
@@ -76,5 +77,9 @@ public class Person {
 
     public String toString() {
         return "This is " + this.name + " whose age is " + this.age;
+    }
+
+    private void f() {
+
     }
 }
