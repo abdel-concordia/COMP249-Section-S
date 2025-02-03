@@ -3,7 +3,7 @@ package comp249_section_s;
 public class Person extends Object {
 
     // Name (String)
-    private String name;
+    String name;
     // Age (int)
     private int age;
     // Address (Address)
@@ -63,18 +63,24 @@ public class Person extends Object {
         this.address = address; // watch out
     }
 
-    public boolean equals(Person otherPerson) { // Will be improved later
-        if (otherPerson == null) {
+    @Override
+    public boolean equals(Object otherObject) {
+        // Part 1: check if param is null
+        if (otherObject == null) {
             return false;
         }
 
-        if (this.name.equals(otherPerson.name) && this.age == otherPerson.age) {
+        // Part 2: check ifotherObject is a Person
+        // if no, return false
+        // if yes, cat it to Person and compare
+        if (this.name.equals(otherObject.name) && this.age == otherObject.age) {
             return true;
         } else {
             return false;
         }
     }
 
+    @Override
     public String toString() {
         return "This is " + this.name + " whose age is " + this.age;
     }
@@ -82,4 +88,5 @@ public class Person extends Object {
     private void f() {
 
     }
+
 }
