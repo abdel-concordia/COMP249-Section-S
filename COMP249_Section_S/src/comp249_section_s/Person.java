@@ -1,9 +1,9 @@
 package comp249_section_s;
 
-public class Person extends Object {
+public class Person {
 
     // Name (String)
-    String name;
+    public String name;
     // Age (int)
     private int age;
     // Address (Address)
@@ -11,6 +11,7 @@ public class Person extends Object {
 
     // Parametrized (main) constructor
     public Person(String name, int age, Address address) {
+        super();
         this.name = name;
         this.age = age;
         this.address = address; // watch out
@@ -64,16 +65,23 @@ public class Person extends Object {
     }
 
     @Override
-    public boolean equals(Object otherObject) {
+    public boolean equals(Object otherObject) { // Person --> Person
         // Part 1: check if param is null
         if (otherObject == null) {
             return false;
         }
 
-        // Part 2: check ifotherObject is a Person
+        // Part 2: check if otherObject is a Person
         // if no, return false
-        // if yes, cat it to Person and compare
-        if (this.name.equals(otherObject.name) && this.age == otherObject.age) {
+        if (this.getClass() != otherObject.getClass()) {
+            return false;
+        }
+
+        // if yes, cast it to Person and compare
+        Person otherPerson = (Person) otherObject;
+
+        // Now, compare
+        if (this.name.equals(otherPerson.name) && this.age == otherPerson.age) {
             return true;
         } else {
             return false;
