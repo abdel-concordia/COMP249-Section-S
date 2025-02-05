@@ -46,10 +46,21 @@ public class Address {
     }
 
     //equals
-    public boolean equals(Address otherAddress) {
-        if (otherAddress == null) {
+    @Override
+    public boolean equals(Object otherObject) {
+        if (otherObject == null) {
             return false;
         }
+
+        // DO NOT USE instanceof operator in equals method. NEVER NEVER
+        //if (!(otherObject instanceof Address))
+        //    return false;
+        if (this.getClass() != otherObject.getClass()) {
+            return false;
+        }
+
+        Address otherAddress = (Address) otherObject;
+
         return this.streetNumber == otherAddress.streetNumber
                 && this.streetName.equals(otherAddress.streetName)
                 && this.cityName.equals(otherAddress.cityName);
