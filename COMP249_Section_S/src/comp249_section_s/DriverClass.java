@@ -1,16 +1,21 @@
 package comp249_section_s;
 
+import java.util.Scanner;
+
 public class DriverClass {
 
     public static void main(String[] args) {
 
-        //Address address1 = new Address(1445, "Maisonneuve West", "Montreal");
-        //Student st1 = new Student("John", 10, new Address(1445, "Maisonneuve West", "Montreal"), "112233", 0.0);
-        A a = new A();
-        B b = new B();
+        Address ad = new Address(123, "Sherbrooke", "Montreal");
 
-        System.out.println(a.x);
-        System.out.println(b.x);
+        Person p1 = new Person("John", 20, ad);
+
+        Student s1 = new Student("Ali", 20, ad, "7755", 4.0);
+
+        Person p2 = new Person(p1);
+
+        Person p3 = new Person(s1);
+        Person p4 = (Person) s1.clone();
 
     }
 
@@ -18,16 +23,29 @@ public class DriverClass {
 
 class A {
 
-    static int x = 0;
+    int x;
 
-    public A() {
-        x++;
+    public void f() {
+        System.out.println("This is f in A");
     }
 }
 
 class B extends A {
 
-    public B() {
-        x++;
+    int y;
+
+    @Override
+    public void f() {
+        System.out.println("This is f in B");
+    }
+}
+
+class C extends B {
+
+    int z;
+
+    @Override
+    public void f() {
+        System.out.println("This is f in C");
     }
 }

@@ -3,11 +3,11 @@ package comp249_section_s;
 public class Person {
 
     // Name (String)
-    public String name;
+    protected String name;
     // Age (int)
-    private int age;
+    protected int age;
     // Address (Address)
-    private Address address;
+    protected Address address;
 
     // Parametrized (main) constructor
     public Person(String name, int age, Address address) {
@@ -91,6 +91,11 @@ public class Person {
     @Override
     public String toString() {
         return "This is " + this.name + " whose age is " + this.age;
+    }
+
+    @Override
+    public Object clone() {
+        return new Person(this);
     }
 
     private void f() {

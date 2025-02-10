@@ -24,6 +24,10 @@ public class Student extends Person {
         this.gpa = gpa;
     }
 
+    public Student(Student otherStudent) {
+        this(otherStudent.name, otherStudent.age, otherStudent.address, otherStudent.id, otherStudent.gpa);
+    }
+
     public void setID(String id) {
         this.id = id;
     }
@@ -43,6 +47,11 @@ public class Student extends Person {
     // toString
     @Override
     public String toString() {
-        return "This is student " + this.getName() + " with ID " + this.id + " and GPA " + this.gpa;
+        return "This is student " + this.name + " with ID " + this.id + " and GPA " + this.gpa;
+    }
+
+    @Override
+    public Object clone() {
+        return new Student(this);
     }
 }
