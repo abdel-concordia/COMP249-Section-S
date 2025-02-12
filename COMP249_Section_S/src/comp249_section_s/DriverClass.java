@@ -4,11 +4,33 @@ public class DriverClass {
 
     public static void main(String[] args) {
 
-        Animal f1 = new Fish("Yellow");
-        Animal b1 = new Bird("Green", 7.5);
-
-        f1.move();
-        //b1.move();
+        //A a = new A();
+        //a.g();
+        A b = new B();
+        b.g();
     }
 
+}
+
+class A {
+
+    public A() {
+        f();
+    }
+
+    public void f() {
+        System.out.println("f in A");
+    }
+
+    public void g() {
+        f();
+    }
+}
+
+class B extends A {
+
+    @Override
+    public void f() {
+        System.out.println("f in B");
+    }
 }
