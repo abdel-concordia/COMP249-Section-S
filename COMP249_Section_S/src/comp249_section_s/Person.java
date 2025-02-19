@@ -13,10 +13,10 @@ public class Person {
     protected Address address;
 
     // Parametrized (main) constructor
-    public Person(String name, int age, Address address) throws Exception {
+    public Person(String name, int age, Address address) throws AgeException, Exception {
         super();
         if (age < 0) {
-            throw new Exception("Age must be positive!!");
+            throw new AgeException("Age must be positive!!");
         }
 
         this.name = name;
