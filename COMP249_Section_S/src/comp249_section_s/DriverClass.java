@@ -1,36 +1,21 @@
 package comp249_section_s;
 
+import old_classes.Address;
+
 public class DriverClass {
 
     public static void main(String[] args) {
 
-        //A a = new A();
-        //a.g();
-        A b = new B();
-        b.g();
-    }
+        Address ad = new Address(123, "Sherbrook ", "Montreal");
 
-}
+        try {
+            Person p = new Person("John", 10, null);
+            System.out.println("Person created successfully.");
 
-class A {
-
-    public A() {
-        f();
-    }
-
-    public void f() {
-        System.out.println("f in A");
-    }
-
-    public void g() {
-        f();
-    }
-}
-
-class B extends A {
-
-    @Override
-    public void f() {
-        System.out.println("f in B");
+        } catch (Exception e) {
+            System.out.println("Error creating Person: " + e.getMessage());
+        } finally {
+            System.out.println("This is finally clause.");
+        }
     }
 }

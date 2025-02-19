@@ -1,6 +1,6 @@
 package old_classes;
 
-import old_classes.Person;
+import comp249_section_s.Person;
 import old_classes.Address;
 
 public class Student extends Person {
@@ -13,7 +13,7 @@ public class Student extends Person {
     // GPA
     private double gpa;
 
-    public Student(String name, int age, Address address, String id, double gpa) {
+    public Student(String name, int age, Address address, String id, double gpa) throws Exception {
         // Construct the Person part
         super(name, age, address); // A call to Person constructor
         // Construct the Extra in student
@@ -21,13 +21,13 @@ public class Student extends Person {
         this.gpa = gpa;
     }
 
-    public Student(String id, double gpa) {
+    public Student(String id, double gpa) throws Exception {
 // Implicit call to default constructor in Person
         this.id = id;
         this.gpa = gpa;
     }
 
-    public Student(Student otherStudent) {
+    public Student(Student otherStudent) throws Exception {
         this(otherStudent.name, otherStudent.age, otherStudent.address, otherStudent.id, otherStudent.gpa);
     }
 
@@ -53,8 +53,10 @@ public class Student extends Person {
         return "This is student " + this.name + " with ID " + this.id + " and GPA " + this.gpa;
     }
 
+    /*
     @Override
     public Object clone() {
         return new Student(this);
     }
+     */
 }

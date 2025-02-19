@@ -1,5 +1,6 @@
-package old_classes;
+package comp249_section_s;
 
+import old_classes.Address;
 import old_classes.Address;
 
 public class Person {
@@ -12,26 +13,33 @@ public class Person {
     protected Address address;
 
     // Parametrized (main) constructor
-    public Person(String name, int age, Address address) {
+    public Person(String name, int age, Address address) throws Exception {
         super();
+        if (age < 0) {
+            throw new Exception("Age must be positive!!");
+        }
+
         this.name = name;
         this.age = age;
+        if (address == null) {
+            throw new Exception("Address cannot be null.");
+        }
         this.address = address; // watch out
         //this.address = new Address(address);
     }
 
     // Default constructor
-    public Person() {
+    public Person() throws Exception {
         this("Unknown name", 0, new Address(0, "Unknown street name", "Unknown city name")); // calls another constructor
         // Can have some other statements
     }
 
-    public Person(String name, int age, int streetNumber, String streetName, String cityName) {
+    public Person(String name, int age, int streetNumber, String streetName, String cityName) throws Exception {
         this(name, age, new Address(streetNumber, streetName, cityName)); // check this with the new constructor above!
     }
 
     // Copy constructor (watch out!!)
-    public Person(Person otherPerson) {
+    public Person(Person otherPerson) throws Exception {
         this(otherPerson.name, otherPerson.age, new Address(otherPerson.address));
     }
 
@@ -95,11 +103,12 @@ public class Person {
         return "This is " + this.name + " whose age is " + this.age;
     }
 
+    /*
     @Override
-    public Object clone() {
+    public Object clone() throws Exception {
         return new Person(this);
     }
-
+     */
     private void f() {
 
     }
