@@ -1,6 +1,5 @@
 package old_classes;
 
-import comp249_section_s.Person;
 import old_classes.Address;
 
 public class Student extends Person {

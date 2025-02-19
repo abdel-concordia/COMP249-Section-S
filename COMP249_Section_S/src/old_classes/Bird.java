@@ -1,4 +1,6 @@
-package comp249_section_s;
+package old_classes;
+
+import old_classes.Animal;
 
 public class Bird extends Animal {
 
