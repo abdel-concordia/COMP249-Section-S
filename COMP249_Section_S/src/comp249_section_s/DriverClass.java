@@ -11,7 +11,6 @@ public class DriverClass {
 
     public static void main(String[] args) {
 
-        /*
         // Writing to a text file
         // Create PrintWriter object
         PrintWriter fos = null;
@@ -29,7 +28,7 @@ public class DriverClass {
 
         // Close the file
         fos.close();
-         */
+
         // Reading from a text file
         // Open the file
         Scanner sc = null;
@@ -40,7 +39,7 @@ public class DriverClass {
         }
 
         // Read from file
-        while (sc.hasNextLine()) {
+        while (sc.hasNextLine()) { // returns true as long as there is a line to read
             String s = sc.nextLine();
             System.out.println(s);
         }
