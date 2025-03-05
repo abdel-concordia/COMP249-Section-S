@@ -1,83 +1,56 @@
 package comp249_section_s;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 public class DriverClass {
 
     public static void main(String[] args) {
 
-        /*
-        int x = 10, y = 7, z = 25;
+        int sum = sumDown(5);
+        System.out.println(sum);
+    }
 
-        // Open/create the file
-        ObjectOutputStream oos = null;
-        try {
-            oos = new ObjectOutputStream(new FileOutputStream("data.bin"));
-        } catch (FileNotFoundException fnfex) {
-            System.out.println("Cannot create/open the file.");
-            System.exit(0);
-        } catch (IOException ioex) {
-            System.out.println("Cannot write to the file.");
-            System.exit(0);
-        }
-        // Write from/to file
-        try {
-            oos.writeInt(x);
-            oos.writeInt(y);
-            oos.writeInt(z);
-        } catch (IOException ioex) {
-            System.out.println("Cannot write to the file.");
-            System.exit(0);
-        }
+    public static void countDown(int num) { // num is positive
 
-// close the file
-        try {
-            oos.close();
-        } catch (IOException ioex) {
-            System.out.println("Cannot close the output file.");
-            System.exit(0);
+        // Base case
+        if (num == 0) {
+            System.out.println(0);
+        } // Recursive call
+        else {
+            System.out.println(num);
+            countDown(num - 1);
         }
+    }
 
-         */
-        // Open the file
-        ObjectInputStream ois = null;
+    public static void countUp(int num) { // num is positive
+        // Base case
+        if (num == 0) {
+            System.out.println(0);
+        } else {
+            // Recursive call
+            countUp(num - 1);
+            System.out.println(num);
 
-        try {
-            ois = new ObjectInputStream(new FileInputStream("data.bin"));
-        } catch (FileNotFoundException fnfex) {
-            System.out.println("Cannot open the file for read.");
-            System.exit(0);
-        } catch (IOException ioex) {
-            System.out.println("Cannot read from file.");
-            System.exit(0);
         }
-        // Read from the file
-        boolean flag = true;
+    }
 
-        while (flag) {
-            try {
-                int num = ois.readInt();
-                System.out.println(num);
-            } catch (EOFException eofex) {
-                flag = false;
-                //System.out.println("No more numbers to read!!");
-            } catch (IOException ioex) {
-                System.out.println("Cannot read number.");
-                System.exit(0);
-            }
+    public static int sumDown(int num) { // num >= 0
+        // Base case
+        if (num == 0) {
+            return 0;
+        } else {
+            // Recursive call
+            return num + sumDown(num - 1);
         }
-        // CLose the file
+    }
 
-        try {
-            ois.close();
-        } catch (IOException ioex) {
-            System.out.println("Cannot close the input file.");
-        }
+    public static int sumArray(int[] numbers, int index) {
+        // Base case
+
+        // Recursive call
+    }
+
+    public static int sumArray(int[] numbers) {
+        // Base case
+
+        // Recursive call
     }
 }
