@@ -9,4 +9,6 @@ public interface MyInterface1 {
     default public void method2() {
         System.out.println("method2 in the interface");
     }
+
+    void f();
 }
