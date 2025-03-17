@@ -4,46 +4,23 @@ public class DriverClass {
 
     public static void main(String[] args) {
 
-        A a = new A();
-        A.B b = a.new B();
-        A.B.C c = b.new C();
-    }
+        Interface1 obj1 = new Interface1() { // obj is referencing an object out of an anonymous class that implements Interface1
+            @Override
+            public void f() {
 
-    public void x() {
+            }
+        };
 
-    }
-
-    public static void y(int z) {
-        int l = z;
-    }
-}
-
-class A {
-
-    private int x;
-
-    private void f() {
-    }
-
-    private void k() {
-        B b = new B();
-    }
-
-    class B {
-
-        class C {
-
-        }
-
-        private static int y;
-
-        private void g() {
-            A.this.f();
-        }
-
-        private void f() {
-
-        }
     }
 
 }
+
+interface Interface1 {
+
+    void f();
+}
+
+// three ways to implement an interface
+// 1. Named class
+// 2. Anonymous class
+// 3. Lambda expression (not covered in COMP 249) ->
