@@ -4,15 +4,45 @@ public class DriverClass {
 
     public static void main(String[] args) {
 
-        MyInterface1 obj1 = new MyClass();
-        MyInterface1 obj2 = new MyClass2();
+        A a = new A();
+        A.B b = a.new B();
+        A.B.C c = b.new C();
+    }
 
-        MyInterface1[] objs = new MyInterface1[2];
-        objs[0] = new MyClass();
-        objs[1] = new MyClass2();
+    public void x() {
 
-        for (MyInterface1 obj : objs) {
-            obj.f();
+    }
+
+    public static void y(int z) {
+        int l = z;
+    }
+}
+
+class A {
+
+    private int x;
+
+    private void f() {
+    }
+
+    private void k() {
+        B b = new B();
+    }
+
+    class B {
+
+        class C {
+
+        }
+
+        private static int y;
+
+        private void g() {
+            A.this.f();
+        }
+
+        private void f() {
+
         }
     }
 

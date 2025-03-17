@@ -1,4 +1,6 @@
-package comp249_section_s;
+package old_classes;
+
+import old_classes.MyInterface1;
 
 public class MyClass2 implements MyInterface1 {
 
