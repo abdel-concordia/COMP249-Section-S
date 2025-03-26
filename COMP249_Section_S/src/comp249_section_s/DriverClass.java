@@ -6,10 +6,14 @@ public class DriverClass {
 
         LinkedList myList = new LinkedList();
 
-        //myList.addToTail("Hi");
-        //myList.addToTail("Hi again");
+        myList.addToTail("1");
+        //myList.addToTail("2");
+        //myList.addToTail("3");
+        //myList.addToTail("4");
         //myList.addToHead("Hello");
-        System.out.println("You removed: " + myList.removeHead());
+        //System.out.println("You removed: " + myList.removeHead());
+        myList.removeValue("2");
+
         myList.display();
         //System.out.println(myList.getSize());
 
