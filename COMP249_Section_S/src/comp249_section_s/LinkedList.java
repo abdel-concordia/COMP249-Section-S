@@ -4,13 +4,15 @@ package comp249_section_s;
 // head, add, remove, display
 public class LinkedList {
 
-    private Node head;
+    private Node head; // MUST HAVE
     private Node tail; // Optional: improves performance if we add to tail often
     private int numberOfElements; // Optional, improves performance when getting the size
 
+    // Constructor
     public LinkedList() {
         head = null;
         tail = null;
+        numberOfElements = 0;
     }
 
     // Add
@@ -34,13 +36,36 @@ public class LinkedList {
         } else {
 
             Node n = new Node(data, null);
-            tail.setLink(n); // The order of this and following statement is VERY important
+            tail.link = n; // The order of this and following statement is VERY important
             tail = n;
             numberOfElements++;
         }
     }
 
     // addAfter (addBefore)
+    public void addAfter(String referenceValue, String value) {
+        if (head == null) {
+            System.out.println("Your list is empty, cannot add after!");
+        } else {
+            Node position = head;
+            while (position != null && !position.data.equals(referenceValue)) {
+                position = position.link;
+            }
+            if (position == null) {
+                System.out.println("The reference value " + referenceValue + " does not exist in the list.");
+            } else {
+                Node newNode = new Node(value, position.link);
+                position.link = newNode;
+
+                if (newNode.link == null) {
+                    tail = newNode;
+                }
+            }
+            numberOfElements++;
+        }
+
+    }
+
     // Remove
     // removeHead
     public String removeHead() {
@@ -48,9 +73,9 @@ public class LinkedList {
         if (head == null) {
             return null; // Probably throw an exception
         } else {
-            String data = head.getData();
+            String data = head.data;
 
-            head = head.getLink();
+            head = head.link;
             numberOfElements--;
 
             if (numberOfElements == 0) { // Take care of tail if the removed element was the head and tail
@@ -67,11 +92,11 @@ public class LinkedList {
             return removeHead();
         } else {
             Node position = head;
-            while (position.getLink() != tail) {
-                position = position.getLink();
+            while (position.link != tail) {
+                position = position.link;
             }
-            String data = tail.getData();
-            position.setLink(null);
+            String data = tail.data;
+            position.link = null;
             tail = position;
             numberOfElements--;
             return data;
@@ -83,20 +108,24 @@ public class LinkedList {
         if (head == null) {
             return null;
         }
-        if (head.getData().equals(value)) {
+        if (head.data.equals(value)) {
             return removeHead();
-        } else if (tail.getData().equals(value)) {
+        } else if (tail.data.equals(value)) {
             return removeTail();
         } else {
             Node position = head;
-            while (position != null && !position.getLink().getData().equals(value)) {
-                position = position.getLink();
+            while (position.link != null && !position.link.data.equals(value)) {
+                position = position.link;
             }
-            if (position == null) {
+
+            if (position.link == null) {
+                System.out.println("Value " + value + " does not exist in the list.");
                 return null;
             } else {
-                String data = position.getLink().getData();
-                position.setLink(position.getLink().getLink());
+                String data = position.link.data;
+
+                //System.out.println(data);
+                position.link = position.link.link;
                 numberOfElements--;
                 return data;
             }
@@ -104,17 +133,71 @@ public class LinkedList {
     }
 
     // removeAfter (remove before)
+    public String removeAfter(String value) {
+        if (head == null) {
+            System.out.println("Cannot remove from an empty list.");
+            return null;
+        } else {
+            Node position = head;
+            while (position != null && !position.data.equals(value)) {
+                position = position.link;
+            }
+
+            if (position == null) {
+                System.out.println("Value " + value + " does not exist.");
+                return null;
+            } else if (position == tail) {
+                System.out.println("There is no value after " + value);
+                return null;
+            } else {
+                String data = position.link.data;
+                // Check if the removed value was on tail
+                if (position.link == tail) {
+                    tail = position;
+                }
+                position.link = position.link.link;
+                numberOfElements--;
+                return data;
+            }
+        }
+    }
+
     // contains: Check if a specific data (value) exists in the list
+    public boolean contains(String value) {
+        Node position = head;
+        while (position != null) {
+            if (position.data.equals(value)) {
+                return true;
+            }
+            position = position.link;
+        }
+        return false;
+    }
+
+    // get data at position index
+    public String get(int index) {
+        if (index >= 0 && index < numberOfElements) {
+            Node position = head;
+            for (int i = 0; i < index; i++) {
+                position = position.link;
+            }
+            return position.data;
+        } else {
+            return null;
+        }
+    }
+
     // display (go through all elements and display each one)
     public void display() {
         if (head == null) {
             System.out.println("This list has no element.");
         } else {
+            System.out.println("Your list contains the following element(s):");
             Node position = head;
             while (position != null) {
                 // display element
                 System.out.println(position);
-                position = position.getLink();
+                position = position.link;
             }
         }
     }
@@ -122,5 +205,31 @@ public class LinkedList {
     // getSize (how many elements in the list)
     public int getSize() {
         return numberOfElements;
+    }
+
+    private class Node {
+
+        // Data
+        private String data;
+        // Link
+        private Node link;
+
+        // Constrcutor(s)
+        public Node(String data, Node link) {
+            this.data = data;
+            this.link = link;
+        }
+
+        // equals()
+        @Override
+        public boolean equals(Object otherObject) {
+            return this.data.equals(otherObject);
+        }
+
+        // toString()
+        @Override
+        public String toString() {
+            return this.data;
+        }
     }
 }
