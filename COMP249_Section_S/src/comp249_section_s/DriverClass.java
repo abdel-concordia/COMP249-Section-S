@@ -4,18 +4,15 @@ public class DriverClass {
 
     public static void main(String[] args) {
 
-        LinkedList myList = new LinkedList();
+        DLinkedList myDList = new DLinkedList();
 
-        myList.addToTail("1");
-        myList.addToTail("2");
-        myList.addToTail("3");
-        //myList.addToTail("4");
-        //myList.addToHead("Hello");
-        //System.out.println("You removed: " + myList.removeHead());
-        myList.addAfter("3", "7");
+        myDList.addToTail("1");
+        myDList.addToTail("2");
+        myDList.addToTail("7");
+        myDList.removeValue("7");
 
-        myList.display();
-        //System.out.println(myList.getSize());
+        myDList.displayForward();
+        myDList.displayBackward();
     }
 
 }

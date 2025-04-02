@@ -1,13 +1,13 @@
 package comp249_section_s;
 
-public class LinkedList {
+public class DLinkedList {
 
     private Node head; // MUST HAVE
-    private Node tail; // Optional: improves performance if we add to tail often
+    private Node tail; // MUST HAVE
     private int numberOfElements; // Optional, improves performance when getting the size
 
     // Constructor
-    public LinkedList() {
+    public DLinkedList() {
         head = null;
         tail = null;
         numberOfElements = 0;
@@ -16,10 +16,12 @@ public class LinkedList {
     // Add
     // addToHead
     public void addToHead(String data) {
-        Node n = new Node(data, head);
+        Node n = new Node(null, data, head);
 
         if (head == null) { // if first element, update tail
             tail = n;
+        } else {
+            head.previous = n;
         }
         head = n;
         numberOfElements++;
@@ -30,9 +32,8 @@ public class LinkedList {
         if (head == null) {
             addToHead(data);
         } else {
-
-            Node n = new Node(data, null);
-            tail.link = n; // The order of this and following statement is VERY important
+            Node n = new Node(tail, data, null);
+            tail.next = n; // The order of this and following statement is VERY important
             tail = n;
             numberOfElements++;
         }
@@ -68,12 +69,12 @@ public class LinkedList {
             return null; // Probably throw an exception
         } else {
             String data = head.data;
-
-            head = head.link;
+            head = head.next;
             numberOfElements--;
-
             if (numberOfElements == 0) { // Take care of tail if the removed element was the head and tail
                 tail = null;
+            } else {
+                head.previous = null;
             }
 
             return data;
@@ -82,16 +83,12 @@ public class LinkedList {
 
     // removeTail
     public String removeTail() {
-        if (numberOfElements == 1) {
+        if (numberOfElements <= 1) { // This takes care of empty list and when there is only 1 element
             return removeHead();
         } else {
-            Node position = head;
-            while (position.link != tail) {
-                position = position.link;
-            }
             String data = tail.data;
-            position.link = null;
-            tail = position;
+            tail = tail.previous;
+            tail.next = null;
             numberOfElements--;
             return data;
         }
@@ -108,24 +105,34 @@ public class LinkedList {
             return removeTail();
         } else {
             Node position = head;
-            while (position.link != null && !position.link.data.equals(value)) {
-                position = position.link;
+            while (position.next != null && !position.next.data.equals(value)) {
+                position = position.next;
             }
 
-            if (position.link == null) {
+            if (position.next == null) {
                 System.out.println("Value " + value + " does not exist in the list.");
                 return null;
             } else {
-                String data = position.link.data;
+                String data = position.next.data;
+
+                Node temp = position.next;
 
                 //System.out.println(data);
-                position.link = position.link.link;
+                // The order of the following 2 statements is VERY IMPORTANT (or adjust the number of .next)
+                position.next.next.previous = position;
+                position.next = position.next.next;
+
+                // Some data sanitization!
+                temp.next = null;
+                temp.previous = null;
+
                 numberOfElements--;
                 return data;
             }
         }
     }
 
+    /*
     // removeAfter (remove before)
     public String removeAfter(String value) {
         if (head == null) {
@@ -180,9 +187,9 @@ public class LinkedList {
             return null;
         }
     }
-
+     */
     // display (go through all elements and display each one)
-    public void display() {
+    public void displayForward() {
         if (head == null) {
             System.out.println("This list has no element.");
         } else {
@@ -191,7 +198,21 @@ public class LinkedList {
             while (position != null) {
                 // display element
                 System.out.println(position);
-                position = position.link;
+                position = position.next;
+            }
+        }
+    }
+
+    public void displayBackward() {
+        if (tail == null) {
+            System.out.println("This list has no element.");
+        } else {
+            System.out.println("Your list contains the following element(s) in reverse order:");
+            Node position = tail;
+            while (position != null) {
+                // display element
+                System.out.println(position);
+                position = position.previous;
             }
         }
     }
@@ -205,13 +226,16 @@ public class LinkedList {
 
         // Data
         private String data;
-        // Link
-        private Node link;
+        // Link 1
+        private Node next;
+        // Link 2
+        private Node previous;
 
         // Constrcutor(s)
-        public Node(String data, Node link) {
+        public Node(Node previous, String data, Node next) {
             this.data = data;
-            this.link = link;
+            this.previous = previous;
+            this.next = next;
         }
 
         // equals()
