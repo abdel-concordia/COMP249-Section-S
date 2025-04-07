@@ -1,18 +1,19 @@
 package comp249_section_s;
 
+import java.util.ArrayList;
+
 public class DriverClass {
 
     public static void main(String[] args) {
 
-        DLinkedList myDList = new DLinkedList();
+        CLinkedList<String> list1 = new CLinkedList<>();
 
-        myDList.addToTail("1");
-        myDList.addToTail("2");
-        myDList.addToTail("7");
-        myDList.removeValue("7");
+        list1.addToHead("10");
+        //list1.addToHead("5");
+        //list1.addToHead("4");
+        //list1.addToHead("3");
 
-        myDList.displayForward();
-        myDList.displayBackward();
+        list1.display();
     }
 
 }

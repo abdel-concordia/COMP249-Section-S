@@ -1,13 +1,13 @@
 package comp249_section_s;
 
-public class LinkedList<T> {
+public class CLinkedList<T> {
 
     private Node head; // MUST HAVE
-    private Node tail; // Optional: improves performance if we add to tail often
+    private Node tail; // Optional: improves performance if we add to tail or at head
     private int numberOfElements; // Optional, improves performance when getting the size
 
     // Constructor
-    public LinkedList() {
+    public CLinkedList() {
         head = null;
         tail = null;
         numberOfElements = 0;
@@ -15,16 +15,19 @@ public class LinkedList<T> {
 
     // Add
     // addToHead
-    public void addToHead(T data) {
+    public void addToHead(T data) { // IMPORTANT: addToHead affects tail in a CList
         Node n = new Node(data, head);
 
         if (head == null) { // if first element, update tail
             tail = n;
+            n.link = n;
         }
         head = n;
+        tail.link = head;
         numberOfElements++;
     }
 
+    /*
     // addToTail
     public void addToTail(T data) {
         if (head == null) {
@@ -179,7 +182,7 @@ public class LinkedList<T> {
             return null;
         }
     }
-
+     */
     // display (go through all elements and display each one)
     public void display() {
         if (head == null) {
@@ -187,11 +190,11 @@ public class LinkedList<T> {
         } else {
             System.out.println("Your list contains the following element(s):");
             Node position = head;
-            while (position != null) {
+            do {
                 // display element
                 System.out.println(position);
                 position = position.link;
-            }
+            } while (position != head);
         }
     }
 

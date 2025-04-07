@@ -39,6 +39,7 @@ public class DLinkedList {
         }
     }
 
+    /*
     // addAfter (addBefore)
     public void addAfter(String referenceValue, String value) {
         if (head == null) {
@@ -61,6 +62,7 @@ public class DLinkedList {
             numberOfElements++;
         }
     }
+
 
     // Remove
     // removeHead
@@ -131,8 +133,8 @@ public class DLinkedList {
             }
         }
     }
-
-    /*
+     */
+ /*
     // removeAfter (remove before)
     public String removeAfter(String value) {
         if (head == null) {
